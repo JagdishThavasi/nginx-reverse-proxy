@@ -1,5 +1,5 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/ImageLoadTesting/nginx-reverse-proxy', '.']
+    args: ['build', '-t', 'gcr.io/imageloadtesting/nginx-reverse-proxy', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/ImageLoadTesting/nginx-reverse-proxy']
+    args: ['push', 'gcr.io/imageloadtesting/nginx-reverse-proxy']
