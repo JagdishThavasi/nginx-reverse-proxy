@@ -2,7 +2,9 @@
 FROM bitnami/nginx:latest
 
 # Install curl for health check and jq for JSON manipulation
-RUN apt-get update && apt-get install -y curl jq && apt-get clean
+
+RUN apt-get update && apt-get install -y jq && apt-get clean
+
 
 # Copy a custom Nginx configuration file
 COPY nginx.conf /opt/bitnami/nginx/conf/nginx.conf
