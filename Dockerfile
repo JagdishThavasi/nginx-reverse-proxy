@@ -18,4 +18,4 @@ RUN ln -sf /dev/stdout /opt/bitnami/nginx/logs/access.log \
     && ln -sf /dev/stderr /opt/bitnami/nginx/logs/error.log
 
 # Start Nginx when the container runs
-CMD ["/opt/bitnami/scripts/nginx/entrypoint.sh"]
+#CMD ["/opt/bitnami/scripts/nginx/entrypoint.sh"]
