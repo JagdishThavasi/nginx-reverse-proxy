@@ -1,21 +1,24 @@
 # Use the Bitnami Nginx container image as the base image
-FROM bitnami/nginx:latest
+FROM nginx:stable-alpine
 
-# Install curl for health check and jq for JSON manipulation
+COPY nginx.conf /etc/nginx/nginx.conf
 
-#RUN apt-get update && apt-get install -y jq && apt-get clean
-
-
-# Copy a custom Nginx configuration file
-COPY nginx.conf /opt/bitnami/nginx/conf/nginx.conf
-
-# Expose the HTTP and HTTPS ports (if needed)
-EXPOSE 80
-# EXPOSE 443
+RUN mkdir -p /var/log/nginx 
 
 # Set the logging to stdout (redirect logs to stdout)
-RUN ln -sf /dev/stdout /opt/bitnami/nginx/logs/access.log \
-    && ln -sf /dev/stderr /opt/bitnami/nginx/logs/error.log
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Start Nginx when the container runs
 #CMD ["/opt/bitnami/scripts/nginx/entrypoint.sh"]
+
+RUN chown 9000:9000 /etc/nginx/nginx.conf
+
+RUN chown 9000:9000 /var/log/nginx 
+
+USER 9000:9000
+
+
+EXPOSE 3000
+
+CMD ["nginx", "-g", "daemon off;"]
